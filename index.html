@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,18 +15,20 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f8ddff, #dce9ff);
-    color: #30243d;
+    background:
+        radial-gradient(circle at top left, #ffe6f5, transparent 40%),
+        linear-gradient(135deg, #eee0ff, #dceeff);
+    color: #342542;
 }
 
 button {
-    border: none;
+    font: inherit;
+    border: 0;
     cursor: pointer;
-    font-weight: bold;
 }
 
 .app {
-    max-width: 1150px;
+    max-width: 1180px;
     margin: auto;
     min-height: 100vh;
 }
@@ -37,23 +38,25 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
 }
 
 .logo {
     font-size: 32px;
     font-weight: 900;
-    color: #df3f9d;
+    color: #db4099;
 }
 
 .currency {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .currency span {
-    background: white;
-    padding: 9px 15px;
-    border-radius: 25px;
+    background: rgba(255,255,255,.9);
+    padding: 9px 14px;
+    border-radius: 22px;
+    font-weight: bold;
 }
 
 /* SCREENS */
@@ -67,227 +70,456 @@ header {
     display: block;
 }
 
+/* BUTTONS */
+
+.primary {
+    background: linear-gradient(90deg,#ff4da6,#8d5cff);
+    color: white;
+    padding: 14px 25px;
+    border-radius: 28px;
+    font-weight: 800;
+    margin-top: 15px;
+    box-shadow: 0 8px 20px rgba(130,70,180,.18);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+}
+
 /* HOME */
 
 .hero {
     min-height: 520px;
-    border-radius: 30px;
-    padding: 50px;
+    border-radius: 32px;
+    padding: 45px;
+
     display: flex;
     align-items: center;
 
     background:
-        linear-gradient(
-            rgba(80,45,100,.15),
-            rgba(80,45,100,.15)
-        ),
-        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80")
-        center/cover;
+        linear-gradient(135deg,
+            rgba(255,210,235,.55),
+            rgba(210,205,255,.35)),
+        linear-gradient(#d7c0ed,#f9d9ed);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "♡ ✦ ♡ ✧ ♡";
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 42px;
+    color: rgba(255,255,255,.8);
+    letter-spacing: 15px;
 }
 
 .hero-content {
-    background: rgba(255,255,255,.92);
-    padding: 30px;
+    background: rgba(255,255,255,.88);
+    padding: 32px;
     border-radius: 25px;
-    max-width: 430px;
+    max-width: 450px;
 }
 
 .hero h1 {
-    font-size: 55px;
-    margin: 0;
-    color: #df3f9d;
-}
-
-.primary {
-    background: linear-gradient(90deg,#ff4da6,#9b5cff);
-    color: white;
-    padding: 15px 30px;
-    border-radius: 30px;
-    font-size: 17px;
-    margin-top: 15px;
+    font-size: 58px;
+    margin: 0 0 10px;
+    color: #db4099;
 }
 
 /* CHALLENGE */
 
-.challenge {
-    background: white;
-    border-radius: 25px;
-    padding: 30px;
+.challenge-card {
+    background: rgba(255,255,255,.92);
+    padding: 32px;
+    border-radius: 28px;
 }
 
-.challenge h2 {
-    color: #df3f9d;
+.challenge-card h2 {
+    color: #db4099;
 }
 
 /* WARDROBE */
 
 .game-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: minmax(300px,.9fr) minmax(380px,1.3fr);
     gap: 20px;
 }
 
 .panel {
-    background: rgba(255,255,255,.94);
-    border-radius: 25px;
+    background: rgba(255,255,255,.9);
+    border-radius: 28px;
     padding: 22px;
 }
 
-/* CHARACTER */
+/* CHARACTER STAGE */
 
-.character-area {
-    min-height: 540px;
-
-    background:
-        radial-gradient(circle at 50% 30%, #fff 0%, transparent 45%),
-        linear-gradient(#ffd9ee,#dfd2ff);
-
-    border-radius: 22px;
+.character-stage {
+    min-height: 600px;
+    border-radius: 24px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    background:
+        radial-gradient(circle at 50% 25%, white, transparent 30%),
+        linear-gradient(145deg,#ffdff0,#e4d9ff);
+
     overflow: hidden;
+    position: relative;
 }
 
-.character {
-    width: 230px;
-    text-align: center;
+/* CHARACTER */
+
+.avatar {
+    width: 220px;
+    height: 535px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* HEAD */
 
-.character-head {
-    font-size: 100px;
-    line-height: 1;
+.avatar-head {
+    position: relative;
+    width: 115px;
+    height: 125px;
+    margin-top: 20px;
+    z-index: 5;
+
+    background: var(--skin);
+    border-radius: 48% 48% 45% 45%;
+    border: 3px solid rgba(60,30,50,.08);
 }
 
-/* CLOTHING LAYERS */
+/* FACE */
 
-.character-item {
-    font-size: 70px;
-    line-height: .8;
-    min-height: 55px;
+.eye {
+    position: absolute;
+    top: 50px;
+    width: 14px;
+    height: 18px;
+    background: #30243d;
+    border-radius: 50%;
 }
 
-.character-bottom {
-    font-size: 65px;
+.eye.left {
+    left: 29px;
 }
 
-.character-shoes {
-    font-size: 55px;
+.eye.right {
+    right: 29px;
 }
 
-.character-accessory {
-    font-size: 45px;
-    min-height: 45px;
+.smile {
+    position: absolute;
+    left: 42px;
+    bottom: 27px;
+    width: 30px;
+    height: 15px;
+    border-bottom: 4px solid #9c426f;
+    border-radius: 50%;
 }
 
-/* CHARACTER NAME */
+/* HAIR */
+
+.hair {
+    position: absolute;
+    z-index: 7;
+    pointer-events: none;
+}
+
+.hair-long {
+    width: 130px;
+    height: 155px;
+    top: -12px;
+    border-radius: 55px 55px 42px 42px;
+    background: var(--hair);
+}
+
+.hair-bob {
+    width: 135px;
+    height: 145px;
+    top: -8px;
+    border-radius: 60px 60px 45px 45px;
+    background: var(--hair);
+}
+
+.hair-ponytail {
+    width: 120px;
+    height: 135px;
+    top: -5px;
+    border-radius: 60px 60px 40px 40px;
+    background: var(--hair);
+}
+
+.hair-ponytail::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    top: 25px;
+    width: 55px;
+    height: 85px;
+    background: var(--hair);
+    border-radius: 50%;
+}
+
+/* BODY */
+
+.avatar-body {
+    width: 120px;
+    height: 165px;
+    position: relative;
+    margin-top: 10px;
+    z-index: 3;
+}
+
+/* TOP */
+
+.top {
+    width: 115px;
+    height: 90px;
+    margin: auto;
+    border-radius: 25px 25px 12px 12px;
+    background: var(--top);
+    position: relative;
+}
+
+.top::before,
+.top::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    width: 38px;
+    height: 65px;
+    background: var(--top);
+    border-radius: 15px;
+}
+
+.top::before {
+    left: -25px;
+    transform: rotate(20deg);
+}
+
+.top::after {
+    right: -25px;
+    transform: rotate(-20deg);
+}
+
+/* SKIRT / BOTTOM */
+
+.bottom {
+    width: 135px;
+    height: 105px;
+    margin: -5px auto 0;
+    position: relative;
+    z-index: 2;
+    background: var(--bottom);
+    border-radius: 10px 10px 35px 35px;
+}
+
+/* LEGS */
+
+.legs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: -5px;
+}
+
+.leg {
+    width: 27px;
+    height: 75px;
+    background: var(--skin);
+    border-radius: 15px;
+}
+
+/* SHOES */
+
+.shoes {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: -3px;
+}
+
+.shoe {
+    width: 50px;
+    height: 25px;
+    background: var(--shoe);
+    border-radius: 15px 20px 8px 8px;
+}
+
+/* ACCESSORY */
+
+.accessory {
+    position: absolute;
+    z-index: 10;
+}
+
+.bag {
+    right: 12px;
+    top: 270px;
+    width: 48px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bag);
+}
+
+.bag::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: -15px;
+    width: 25px;
+    height: 22px;
+    border: 5px solid var(--bag);
+    border-bottom: 0;
+    border-radius: 15px 15px 0 0;
+}
+
+.glasses {
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85px;
+    height: 20px;
+}
+
+.glasses::before,
+.glasses::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 17px;
+    border: 4px solid #30243d;
+    border-radius: 50%;
+}
+
+.glasses::before {
+    left: 3px;
+}
+
+.glasses::after {
+    right: 3px;
+}
+
+.bow {
+    top: -5px;
+    right: 32px;
+    width: 45px;
+    height: 35px;
+    background: #ff5fae;
+    border-radius: 50%;
+}
+
+.bow::after {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 8px;
+    width: 12px;
+    height: 20px;
+    background: #e73791;
+    border-radius: 50%;
+}
+
+/* NAME */
 
 .character-name {
-    margin-top: 15px;
-    font-weight: bold;
-    color: #7b4b8f;
+    margin-top: 10px;
+    font-weight: 900;
+    color: #71467f;
 }
 
-/* CATEGORIES */
+/* WARDROBE */
 
 .categories {
     display: flex;
-    gap: 8px;
     flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 18px;
 }
 
 .category {
-    background: #f0e8ff;
-    padding: 10px 14px;
+    background: #eee7f7;
+    color: #594366;
+    padding: 9px 13px;
     border-radius: 20px;
 }
 
 .category.active {
-    background: #df3f9d;
+    background: #db4099;
     color: white;
 }
-
-/* ITEMS */
 
 .items {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 10px;
+    gap: 12px;
 }
 
 .item {
-    background: #faf7ff;
+    min-height: 90px;
+    background: #faf8ff;
     border: 2px solid transparent;
-    border-radius: 15px;
-    padding: 15px 8px;
+    border-radius: 17px;
+    padding: 10px;
     text-align: center;
-    font-size: 38px;
-    min-height: 75px;
 }
 
 .item:hover {
-    border-color: #df3f9d;
+    border-color: #db4099;
     transform: translateY(-2px);
 }
 
 .item.selected {
-    border-color: #df3f9d;
-    background: #ffe4f4;
+    border-color: #db4099;
+    background: #ffe6f3;
+}
+
+.item-preview {
+    font-size: 34px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.item-name {
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /* RUNWAY */
 
 .runway {
-    background: linear-gradient(135deg,#241438,#693f83);
+    background: linear-gradient(135deg,#21142f,#67417c);
     color: white;
-    border-radius: 25px;
-    padding: 35px;
+    border-radius: 28px;
+    padding: 30px;
     text-align: center;
 }
 
 .runway-stage {
-    min-height: 420px;
+    min-height: 570px;
+    border-radius: 24px;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     background:
-        radial-gradient(circle,#9d6ab5,transparent 55%),
-        linear-gradient(#251638,#422553);
-
-    border-radius: 20px;
+        radial-gradient(circle at 50% 25%, #bd8dd0, transparent 30%),
+        linear-gradient(#281538,#513267);
 }
 
-.runway-character {
-    width: 230px;
-    text-align: center;
-}
-
-.runway-character .character-head {
-    font-size: 100px;
-}
-
-.runway-character .character-item {
-    font-size: 70px;
-}
-
-.runway-character .character-bottom {
-    font-size: 65px;
-}
-
-.runway-character .character-shoes {
-    font-size: 55px;
-}
-
-.runway-character .character-accessory {
-    font-size: 45px;
+.runway .avatar {
+    transform: scale(1.05);
 }
 
 /* JUDGES */
@@ -301,25 +533,25 @@ header {
 
 .judge {
     background: white;
-    color: #30243d;
+    color: #342542;
+    border-radius: 17px;
     padding: 15px;
-    border-radius: 15px;
 }
 
 .score {
     font-size: 38px;
-    color: #df3f9d;
-    font-weight: bold;
+    font-weight: 900;
+    color: #db4099;
 }
 
 /* REWARD */
 
 .reward {
-    margin-top: 20px;
-    background: #fff1a7;
-    color: #30243d;
+    background: #fff0a7;
+    color: #342542;
     padding: 22px;
     border-radius: 20px;
+    margin-top: 20px;
 }
 
 /* NAV */
@@ -328,8 +560,7 @@ header {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 20px 0;
-    padding-bottom: 25px;
+    padding: 20px;
     flex-wrap: wrap;
 }
 
@@ -341,9 +572,17 @@ header {
 
 /* MOBILE */
 
-@media(max-width:700px) {
+@media(max-width:760px) {
 
     .game-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .character-stage {
+        min-height: 520px;
+    }
+
+    .judges {
         grid-template-columns: 1fr;
     }
 
@@ -352,21 +591,12 @@ header {
     }
 
     .hero h1 {
-        font-size: 42px;
-    }
-
-    .judges {
-        grid-template-columns: 1fr;
-    }
-
-    .character-area {
-        min-height: 450px;
+        font-size: 44px;
     }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -381,13 +611,9 @@ header {
 
     <div class="currency">
 
-        <span>
-            🪙 <b id="coins">1250</b>
-        </span>
+        <span>🪙 <b id="coins">1250</b></span>
 
-        <span>
-            ⭐ <b id="stars">320</b>
-        </span>
+        <span>⭐ <b id="stars">320</b></span>
 
     </div>
 
@@ -404,12 +630,10 @@ header {
 
             <h1>Style Town</h1>
 
-            <p>
-                Dress. Create. Explore. Be You.
-            </p>
+            <p><strong>Dress. Create. Explore. Be You.</strong></p>
 
             <p>
-                Welcome to your own fashion world.
+                Your fashion world starts here.
             </p>
 
             <button
@@ -431,18 +655,18 @@ header {
 
 <section id="challenge" class="screen">
 
-    <div class="challenge">
+    <div class="challenge-card">
 
         <h2>☀️ Today's Challenge</h2>
 
         <h1>Summer Holiday</h1>
 
         <p>
-            Dress your character for the perfect luxury summer holiday.
+            Create the perfect luxury summer holiday look.
         </p>
 
         <p>
-            ⏱️ Time remaining: <b>05:00</b>
+            ⏱️ <strong>05:00</strong>
         </p>
 
         <button
@@ -462,119 +686,138 @@ header {
 
 <section id="wardrobe" class="screen">
 
-    <div class="game-grid">
+<div class="game-grid">
 
 
-        <!-- CHARACTER PREVIEW -->
+<!-- CHARACTER -->
 
-        <div class="panel">
+<div class="panel">
 
-            <h2>Your Character</h2>
+<h2>Your Character</h2>
 
-            <div class="character-area">
+<div class="character-stage">
 
-                <div class="character">
+<div
+    id="avatar"
+    class="avatar"
+    style="
+        --skin:#f2c3a5;
+        --hair:#d9a441;
+        --top:#ed5caa;
+        --bottom:#77b8e8;
+        --shoe:#e74c7d;
+        --bag:#c48d68;
+    "
+>
 
-                    <div
-                        id="characterAccessory"
-                        class="character-accessory">
-                    </div>
+    <div class="avatar-head">
 
-                    <div
-                        id="characterHead"
-                        class="character-head">
-                        👩🏼
-                    </div>
+        <div class="hair hair-long"></div>
 
-                    <div
-                        id="characterTop"
-                        class="character-item">
-                        👚
-                    </div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
 
-                    <div
-                        id="characterBottom"
-                        class="character-bottom">
-                    </div>
+        <div class="smile"></div>
 
-                    <div
-                        id="characterShoes"
-                        class="character-shoes">
-                    </div>
+    </div>
 
-                    <div class="character-name">
-                        Your Style
-                    </div>
+    <div class="avatar-body">
 
-                </div>
+        <div class="top"></div>
 
-            </div>
+        <div class="bottom"></div>
+
+        <div class="legs">
+
+            <div class="leg"></div>
+            <div class="leg"></div>
 
         </div>
 
+        <div class="shoes">
 
-        <!-- WARDROBE -->
-
-        <div class="panel">
-
-            <h2>My Wardrobe 👗</h2>
-
-            <div class="categories">
-
-                <button
-                    class="category active"
-                    onclick="category('tops', this)">
-                    Tops
-                </button>
-
-                <button
-                    class="category"
-                    onclick="category('bottoms', this)">
-                    Bottoms
-                </button>
-
-                <button
-                    class="category"
-                    onclick="category('shoes', this)">
-                    Shoes
-                </button>
-
-                <button
-                    class="category"
-                    onclick="category('accessories', this)">
-                    Accessories
-                </button>
-
-                <button
-                    class="category"
-                    onclick="category('hair', this)">
-                    Hair
-                </button>
-
-                <button
-                    class="category"
-                    onclick="category('skin', this)">
-                    Skin
-                </button>
-
-            </div>
-
-            <div
-                id="items"
-                class="items">
-            </div>
-
-            <button
-                class="primary"
-                onclick="showScreen('runway')">
-
-                ✨ FINISH OUTFIT
-
-            </button>
+            <div class="shoe"></div>
+            <div class="shoe"></div>
 
         </div>
 
     </div>
+
+    <div
+        id="accessoryVisual"
+        class="accessory bag">
+    </div>
+
+</div>
+
+</div>
+
+<p class="character-name">
+    Your Style
+</p>
+
+</div>
+
+
+<!-- WARDROBE -->
+
+<div class="panel">
+
+<h2>My Wardrobe 👗</h2>
+
+<div class="categories">
+
+<button
+    class="category active"
+    onclick="category('tops',this)">
+    Tops
+</button>
+
+<button
+    class="category"
+    onclick="category('bottoms',this)">
+    Bottoms
+</button>
+
+<button
+    class="category"
+    onclick="category('shoes',this)">
+    Shoes
+</button>
+
+<button
+    class="category"
+    onclick="category('accessories',this)">
+    Accessories
+</button>
+
+<button
+    class="category"
+    onclick="category('hair',this)">
+    Hair
+</button>
+
+<button
+    class="category"
+    onclick="category('skin',this)">
+    Skin
+</button>
+
+</div>
+
+<div id="items" class="items"></div>
+
+<button
+    class="primary"
+    onclick="showScreen('runway')">
+
+    ✨ FINISH OUTFIT
+
+</button>
+
+</div>
+
+</div>
 
 </section>
 
@@ -583,138 +826,110 @@ header {
 
 <section id="runway" class="screen">
 
-    <div class="runway">
+<div class="runway">
 
-        <h1>
-            ✨ THE RUNWAY ✨
-        </h1>
+<h1>✨ THE RUNWAY ✨</h1>
 
-        <p>
-            Summer Holiday
-        </p>
+<p>Summer Holiday</p>
 
+<div class="runway-stage">
 
-        <div class="runway-stage">
+<div
+    id="runwayAvatar"
+    class="avatar">
+</div>
 
-            <div
-                id="runwayCharacter"
-                class="runway-character">
+</div>
 
-            </div>
+<h2>
+    Judges are scoring...
+</h2>
 
-        </div>
+<div class="judges">
 
+<div class="judge">
 
-        <h2>
-            Judges are scoring...
-        </h2>
+<h3>👩 Mia</h3>
 
+<p>Fashion Expert</p>
 
-        <div class="judges">
+<div class="score">
+9/10
+</div>
 
-            <div class="judge">
+</div>
 
-                <h3>👩 Mia</h3>
+<div class="judge">
 
-                <p>
-                    Fashion Expert
-                </p>
+<h3>👩 Luna</h3>
 
-                <div class="score">
-                    9/10
-                </div>
+<p>Creative Judge</p>
 
-            </div>
+<div class="score">
+8/10
+</div>
 
+</div>
 
-            <div class="judge">
+<div class="judge">
 
-                <h3>👩 Luna</h3>
+<h3>👩 Skye</h3>
 
-                <p>
-                    Creative Judge
-                </p>
+<p>Trend Judge</p>
 
-                <div class="score">
-                    8/10
-                </div>
+<div class="score">
+9/10
+</div>
 
-            </div>
+</div>
 
-
-            <div class="judge">
-
-                <h3>👩 Skye</h3>
-
-                <p>
-                    Trend Judge
-                </p>
-
-                <div class="score">
-                    9/10
-                </div>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="reward">
+<div class="reward">
 
-            <h2>
-                🏆 AMAZING STYLE!
-            </h2>
+<h2>🏆 AMAZING STYLE!</h2>
 
-            <div class="score">
-                8.6 / 10
-            </div>
+<div class="score">
+8.6 / 10
+</div>
 
-            <p>
-                🪙 +200 Coins
-            </p>
+<p>🪙 +200 Coins</p>
+<p>⭐ +50 Style Points</p>
+<p>🎁 New Item Unlocked</p>
 
-            <p>
-                ⭐ +50 Style Points
-            </p>
+<button
+    class="primary"
+    onclick="showScreen('home')">
 
-            <p>
-                🎁 New Item Unlocked
-            </p>
+    CONTINUE
 
-            <button
-                class="primary"
-                onclick="showScreen('home')">
+</button>
 
-                CONTINUE
+</div>
 
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- NAVIGATION -->
-
 <nav class="nav">
 
-    <button onclick="showScreen('home')">
-        🏠 Home
-    </button>
+<button onclick="showScreen('home')">
+🏠 Home
+</button>
 
-    <button onclick="showScreen('challenge')">
-        🏆 Challenge
-    </button>
+<button onclick="showScreen('challenge')">
+🏆 Challenge
+</button>
 
-    <button onclick="showScreen('wardrobe')">
-        👗 Wardrobe
-    </button>
+<button onclick="showScreen('wardrobe')">
+👗 Wardrobe
+</button>
 
-    <button onclick="showScreen('runway')">
-        ✨ Runway
-    </button>
+<button onclick="showScreen('runway')">
+✨ Runway
+</button>
 
 </nav>
 
@@ -723,109 +938,267 @@ header {
 
 <script>
 
-
-/* =========================
-   CHARACTER DATA
-========================= */
+/* ===================================
+   STYLE TOWN CHARACTER
+=================================== */
 
 const character = {
 
-    skin: "👩🏼",
+    skin: "#f2c3a5",
 
-    hair: "👩🏼",
+    hair: {
+        style: "long",
+        colour: "#d9a441"
+    },
 
-    top: "👚",
+    top: "#ed5caa",
 
-    bottom: "",
+    bottom: "#77b8e8",
 
-    shoes: "",
+    shoes: "#e74c7d",
 
-    accessory: ""
+    accessory: "bag"
 
 };
 
 
-/* =========================
-   WARDROBE DATA
-========================= */
+/* ===================================
+   WARDROBE
+=================================== */
 
 const wardrobe = {
 
     tops: [
-        "👚",
-        "👕",
-        "👔",
-        "🧥",
-        "👗",
-        "🩷"
+
+        {
+            name: "Pink Pop",
+            icon: "🩷",
+            value: "#ed5caa"
+        },
+
+        {
+            name: "Sky Blue",
+            icon: "🩵",
+            value: "#65bce8"
+        },
+
+        {
+            name: "Sunny Yellow",
+            icon: "💛",
+            value: "#f3c94f"
+        },
+
+        {
+            name: "Lavender",
+            icon: "💜",
+            value: "#ad8be7"
+        },
+
+        {
+            name: "Mint Fresh",
+            icon: "💚",
+            value: "#75d6b0"
+        },
+
+        {
+            name: "White Chic",
+            icon: "🤍",
+            value: "#ffffff"
+        }
+
     ],
+
 
     bottoms: [
-        "👖",
-        "🩳",
-        "👗",
-        "🩷",
-        "🤍",
-        "💜"
+
+        {
+            name: "Ocean Jeans",
+            icon: "👖",
+            value: "#77b8e8"
+        },
+
+        {
+            name: "Pink Skirt",
+            icon: "🩷",
+            value: "#f178b7"
+        },
+
+        {
+            name: "Lilac Skirt",
+            icon: "💜",
+            value: "#aa88df"
+        },
+
+        {
+            name: "Sun Shorts",
+            icon: "💛",
+            value: "#f0c44d"
+        },
+
+        {
+            name: "Mint Skirt",
+            icon: "💚",
+            value: "#76d2ad"
+        },
+
+        {
+            name: "White Skirt",
+            icon: "🤍",
+            value: "#ffffff"
+        }
+
     ],
+
 
     shoes: [
-        "👟",
-        "👠",
-        "🥾",
-        "🥿",
-        "👡",
-        "👢"
+
+        {
+            name: "Pink Pumps",
+            icon: "👠",
+            value: "#e74c7d"
+        },
+
+        {
+            name: "White Trainers",
+            icon: "👟",
+            value: "#ffffff"
+        },
+
+        {
+            name: "Purple Shoes",
+            icon: "👠",
+            value: "#9a70d6"
+        },
+
+        {
+            name: "Sunny Shoes",
+            icon: "👡",
+            value: "#f1c64f"
+        },
+
+        {
+            name: "Blue Trainers",
+            icon: "👟",
+            value: "#5faee8"
+        },
+
+        {
+            name: "Black Boots",
+            icon: "🥾",
+            value: "#3c3542"
+        }
+
     ],
+
 
     accessories: [
-        "👜",
-        "🕶️",
-        "💍",
-        "📿",
-        "🎀",
-        "👒"
+
+        {
+            name: "Pink Bag",
+            icon: "👜",
+            value: "bag"
+        },
+
+        {
+            name: "Sunglasses",
+            icon: "🕶️",
+            value: "glasses"
+        },
+
+        {
+            name: "Cute Bow",
+            icon: "🎀",
+            value: "bow"
+        },
+
+        {
+            name: "Heart Bag",
+            icon: "💗",
+            value: "bag"
+        }
+
     ],
+
 
     hair: [
-        "👩🏼",
-        "👩🏻",
-        "👩🏽",
-        "👩🏾",
-        "👩🏿",
-        "👩‍🦰"
+
+        {
+            name: "Golden Long",
+            icon: "👱‍♀️",
+            style: "long",
+            colour: "#d9a441"
+        },
+
+        {
+            name: "Chocolate Bob",
+            icon: "👩🏻",
+            style: "bob",
+            colour: "#4a3025"
+        },
+
+        {
+            name: "Black Ponytail",
+            icon: "👩🏿",
+            style: "ponytail",
+            colour: "#211c24"
+        },
+
+        {
+            name: "Rose Hair",
+            icon: "🩷",
+            style: "long",
+            colour: "#d77a9d"
+        }
+
     ],
 
+
     skin: [
-        "👩🏻",
-        "👩🏼",
-        "👩🏽",
-        "👩🏾",
-        "👩🏿"
+
+        {
+            name: "Fair",
+            icon: "🤍",
+            value: "#f4c9ae"
+        },
+
+        {
+            name: "Light",
+            icon: "🩷",
+            value: "#eab18e"
+        },
+
+        {
+            name: "Warm",
+            icon: "🤎",
+            value: "#c98663"
+        },
+
+        {
+            name: "Deep",
+            icon: "🤎",
+            value: "#7b4a3c"
+        }
+
     ]
 
 };
 
 
-/* =========================
+/* ===================================
    SCREEN CONTROL
-========================= */
+=================================== */
 
 function showScreen(id) {
 
     document
         .querySelectorAll(".screen")
-        .forEach(screen => {
-
-            screen.classList.remove("active");
-
-        });
-
+        .forEach(screen =>
+            screen.classList.remove("active")
+        );
 
     document
         .getElementById(id)
         .classList.add("active");
-
 
     if (id === "runway") {
 
@@ -836,143 +1209,116 @@ function showScreen(id) {
 }
 
 
-/* =========================
-   CHARACTER RENDERING
-========================= */
-
-function renderCharacter() {
-
-    document
-        .getElementById("characterHead")
-        .innerHTML = character.hair;
-
-
-    document
-        .getElementById("characterTop")
-        .innerHTML = character.top;
-
-
-    document
-        .getElementById("characterBottom")
-        .innerHTML = character.bottom;
-
-
-    document
-        .getElementById("characterShoes")
-        .innerHTML = character.shoes;
-
-
-    document
-        .getElementById("characterAccessory")
-        .innerHTML = character.accessory;
-
-}
-
-
-/* =========================
+/* ===================================
    WARDROBE CATEGORY
-========================= */
+=================================== */
 
 function category(type, button) {
 
     const container =
         document.getElementById("items");
 
-
     container.innerHTML = "";
-
 
     document
         .querySelectorAll(".category")
-        .forEach(btn => {
-
-            btn.classList.remove("active");
-
-        });
-
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
     button.classList.add("active");
 
 
     wardrobe[type].forEach(item => {
 
-        const itemButton =
+        const button =
             document.createElement("button");
 
+        button.className = "item";
 
-        itemButton.className = "item";
+        button.innerHTML = `
 
+            <span class="item-preview">
+                ${item.icon}
+            </span>
 
-        itemButton.innerHTML = item;
+            <span class="item-name">
+                ${item.name}
+            </span>
 
+        `;
 
-        itemButton.addEventListener(
+        button.addEventListener(
             "click",
-            function() {
+            () => {
 
-                selectItem(type, item);
+                selectItem(type,item);
 
             }
         );
 
-
-        container.appendChild(itemButton);
+        container.appendChild(button);
 
     });
 
 }
 
 
-/* =========================
-   ITEM SELECTION
-========================= */
+/* ===================================
+   SELECT ITEM
+=================================== */
 
-function selectItem(type, item) {
-
+function selectItem(type,item) {
 
     if (type === "tops") {
 
-        character.top = item;
+        character.top =
+            item.value;
 
     }
 
 
     if (type === "bottoms") {
 
-        character.bottom = item;
+        character.bottom =
+            item.value;
 
     }
 
 
     if (type === "shoes") {
 
-        character.shoes = item;
+        character.shoes =
+            item.value;
 
     }
 
 
     if (type === "accessories") {
 
-        character.accessory = item;
+        character.accessory =
+            item.value;
 
     }
 
 
     if (type === "hair") {
 
-        character.hair = item;
+        character.hair = {
+
+            style: item.style,
+
+            colour: item.colour
+
+        };
 
     }
 
 
     if (type === "skin") {
 
-        character.skin = item;
-
-        /*
-        Skin changes independently.
-        Hair does NOT change.
-        */
+        character.skin =
+            item.value;
 
     }
 
@@ -982,48 +1328,172 @@ function selectItem(type, item) {
 }
 
 
-/* =========================
-   RUNWAY
-========================= */
+/* ===================================
+   RENDER CHARACTER
+=================================== */
 
-function renderRunway() {
+function renderCharacter() {
 
-    const runway =
-        document.getElementById("runwayCharacter");
+    const avatar =
+        document.getElementById("avatar");
 
 
-    runway.innerHTML = `
+    avatar.style.setProperty(
+        "--skin",
+        character.skin
+    );
 
-        <div class="character-accessory">
-            ${character.accessory}
-        </div>
 
-        <div class="character-head">
-            ${character.hair}
-        </div>
+    avatar.style.setProperty(
+        "--hair",
+        character.hair.colour
+    );
 
-        <div class="character-item">
-            ${character.top}
-        </div>
 
-        <div class="character-bottom">
-            ${character.bottom}
-        </div>
+    avatar.style.setProperty(
+        "--top",
+        character.top
+    );
 
-        <div class="character-shoes">
-            ${character.shoes}
-        </div>
 
-    `;
+    avatar.style.setProperty(
+        "--bottom",
+        character.bottom
+    );
+
+
+    avatar.style.setProperty(
+        "--shoe",
+        character.shoes
+    );
+
+
+    const hair =
+        avatar.querySelector(".hair");
+
+
+    hair.className =
+        "hair hair-" +
+        character.hair.style;
+
+
+    renderAccessory();
 
 }
 
 
-/* =========================
-   START GAME
-========================= */
+/* ===================================
+   ACCESSORY
+=================================== */
+
+function renderAccessory() {
+
+    const accessory =
+        document.getElementById(
+            "accessoryVisual"
+        );
+
+
+    accessory.className =
+        "accessory";
+
+
+    if (character.accessory === "bag") {
+
+        accessory.classList.add("bag");
+
+        accessory.style.setProperty(
+            "--bag",
+            "#c48d68"
+        );
+
+    }
+
+
+    if (character.accessory === "glasses") {
+
+        accessory.classList.add("glasses");
+
+    }
+
+
+    if (character.accessory === "bow") {
+
+        accessory.classList.add("bow");
+
+    }
+
+}
+
+
+/* ===================================
+   RUNWAY
+=================================== */
+
+function renderRunway() {
+
+    const source =
+        document.getElementById("avatar");
+
+    const runway =
+        document.getElementById("runwayAvatar");
+
+
+    runway.innerHTML =
+        source.innerHTML;
+
+
+    runway.style.setProperty(
+        "--skin",
+        character.skin
+    );
+
+
+    runway.style.setProperty(
+        "--hair",
+        character.hair.colour
+    );
+
+
+    runway.style.setProperty(
+        "--top",
+        character.top
+    );
+
+
+    runway.style.setProperty(
+        "--bottom",
+        character.bottom
+    );
+
+
+    runway.style.setProperty(
+        "--shoe",
+        character.shoes
+    );
+
+
+    const runwayHair =
+        runway.querySelector(".hair");
+
+
+    if (runwayHair) {
+
+        runwayHair.className =
+            "hair hair-" +
+            character.hair.style;
+
+    }
+
+}
+
+
+/* ===================================
+   START
+=================================== */
 
 renderCharacter();
+
 
 category(
     "tops",
