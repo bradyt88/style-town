@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Town</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f7d7ff, #dce7ff);
+    color: #30243d;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.app {
+    max-width: 1100px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+header {
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    color: #e83e9f;
+}
+
+.currency {
+    display: flex;
+    gap: 10px;
+}
+
+.currency span {
+    background: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.screen {
+    display: none;
+    padding: 20px;
+}
+
+.screen.active {
+    display: block;
+}
+
+.hero {
+    min-height: 520px;
+    border-radius: 30px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(
+            rgba(80, 45, 100, .15),
+            rgba(80, 45, 100, .15)
+        ),
+        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80")
+        center/cover;
+}
+
+.hero-content {
+    background: rgba(255,255,255,.9);
+    padding: 30px;
+    border-radius: 25px;
+    max-width: 400px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin: 0;
+    color: #e83e9f;
+}
+
+.primary {
+    background: linear-gradient(90deg,#ff4da6,#9b5cff);
+    color: white;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.challenge {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.challenge h2 {
+    margin-top: 0;
+    color: #e83e9f;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 20px;
+}
+
+.panel {
+    background: rgba(255,255,255,.9);
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.character-area {
+    min-height: 500px;
+    background: linear-gradient(#ffd9f0,#e7d5ff);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character {
+    text-align: center;
+    font-size: 110px;
+}
+
+.avatar {
+    font-size: 150px;
+}
+
+.categories {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.category {
+    background: #f2e8ff;
+    padding: 9px 14px;
+    border-radius: 20px;
+}
+
+.category.active {
+    background: #e83e9f;
+    color: white;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+}
+
+.item {
+    background: #faf7ff;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 12px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.item:hover {
+    border-color: #e83e9f;
+}
+
+.runway {
+    background: linear-gradient(#241438,#673c80);
+    color: white;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+}
+
+.runway-character {
+    font-size: 180px;
+    margin: 25px;
+}
+
+.judges {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+}
+
+.judge {
+    background: white;
+    color: #30243d;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.score {
+    font-size: 40px;
+    color: #e83e9f;
+    font-weight: bold;
+}
+
+.reward {
+    margin-top: 20px;
+    background: #fff2a8;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.nav button {
+    background: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+}
+
+@media(max-width:700px) {
+
+    .game-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .judges {
+        grid-template-columns: 1fr;
+    }
+
+    .avatar {
+        font-size: 110px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+    <div class="logo">Style Town 💗</div>
+
+    <div class="currency">
+        <span>🪙 <b id="coins">1250</b></span>
+        <span>⭐ <b id="stars">320</b></span>
+    </div>
+</header>
+
+<section id="home" class="screen active">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <h1>Style Town</h1>
+
+            <p>Dress. Create. Explore. Be You.</p>
+
+            <p>Welcome to your own fashion world.</p>
+
+            <button class="primary" onclick="showScreen('challenge')">
+                PLAY TODAY'S CHALLENGE
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="challenge" class="screen">
+
+    <div class="challenge">
+
+        <h2>☀️ Today's Challenge</h2>
+
+        <h1>Summer Holiday</h1>
+
+        <p>
+            Dress your character for the perfect luxury summer holiday.
+        </p>
+
+        <p>⏱️ Time remaining: <b>05:00</b></p>
+
+        <button class="primary" onclick="showScreen('wardrobe')">
+            ENTER WARDROBE
+        </button>
+
+    </div>
+
+</section>
+
+<section id="wardrobe" class="screen">
+
+    <div class="game-grid">
+
+        <div class="panel">
+
+            <h2>Your Character</h2>
+
+            <div class="character-area">
+
+                <div class="character">
+
+                    <div id="avatar" class="avatar">
+                        👩🏼
+                    </div>
+
+                    <div id="outfit">
+                        👚
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>My Wardrobe 👗</h2>
+
+            <div class="categories">
+
+                <button class="category active" onclick="category('tops')">
+                    Tops
+                </button>
+
+                <button class="category" onclick="category('bottoms')">
+                    Bottoms
+                </button>
+
+                <button class="category" onclick="category('shoes')">
+                    Shoes
+                </button>
+
+                <button class="category" onclick="category('accessories')">
+                    Accessories
+                </button>
+
+                <button class="category" onclick="category('hair')">
+                    Hair
+                </button>
+
+            </div>
+
+            <div id="items" class="items"></div>
+
+            <button class="primary" onclick="showScreen('runway')">
+                ✨ FINISH OUTFIT
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="runway" class="screen">
+
+    <div class="runway">
+
+        <h1>✨ THE RUNWAY ✨</h1>
+
+        <p>Summer Holiday</p>
+
+        <div class="runway-character" id="runwayCharacter">
+            👩🏼
+        </div>
+
+        <h2>Judges are scoring...</h2>
+
+        <div class="judges">
+
+            <div class="judge">
+                <h3>👩 Mia</h3>
+                <p>Fashion Expert</p>
+                <div class="score">9/10</div>
+            </div>
+
+            <div class="judge">
+                <h3>👩 Luna</h3>
+                <p>Creative Judge</p>
+                <div class="score">8/10</div>
+            </div>
+
+            <div class="judge">
+                <h3>👩 Skye</h3>
+                <p>Trend Judge</p>
+                <div class="score">9/10</div>
+            </div>
+
+        </div>
+
+        <div class="reward">
+
+            <h2>🏆 AMAZING STYLE!</h2>
+
+            <div class="score">8.6 / 10</div>
+
+            <p>🪙 +200 Coins</p>
+            <p>⭐ +50 Style Points</p>
+            <p>🎁 New Item Unlocked</p>
+
+            <button class="primary" onclick="showScreen('home')">
+                CONTINUE
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<nav class="nav">
+
+    <button onclick="showScreen('home')">🏠 Home</button>
+    <button onclick="showScreen('challenge')">🏆 Challenge</button>
+    <button onclick="showScreen('wardrobe')">👗 Wardrobe</button>
+    <button onclick="showScreen('runway')">✨ Runway</button>
+
+</nav>
+
+</div>
+
+<script>
+
+const wardrobe = {
+
+    tops: [
+        "👚",
+        "👕",
+        "👔",
+        "🧥",
+        "👗",
+        "🩷"
+    ],
+
+    bottoms: [
+        "👖",
+        "🩳",
+        "👗",
+        "🩷",
+        "🤍",
+        "💜"
+    ],
+
+    shoes: [
+        "👟",
+        "👠",
+        "🥾",
+        "🥿",
+        "👡",
+        "👢"
+    ],
+
+    accessories: [
+        "👜",
+        "🕶️",
+        "💍",
+        "📿",
+        "🎀",
+        "👒"
+    ],
+
+    hair: [
+        "👩🏼",
+        "👩🏻",
+        "👩🏽",
+        "👩🏾",
+        "👩🏿",
+        "👩‍🦰"
+    ]
+
+};
+
+function showScreen(id) {
+
+    document.querySelectorAll(".screen")
+        .forEach(screen => screen.classList.remove("active"));
+
+    document.getElementById(id)
+        .classList.add("active");
+
+    if(id === "runway") {
+
+        document.getElementById("runwayCharacter").innerHTML =
+            document.getElementById("avatar").innerHTML;
+
+    }
+}
+
+function category(type) {
+
+    const container = document.getElementById("items");
+
+    container.innerHTML = "";
+
+    wardrobe[type].forEach(item => {
+
+        const button = document.createElement("button");
+
+        button.className = "item";
+
+        button.innerHTML = item;
+
+        button.onclick = function() {
+
+            if(type === "hair") {
+
+                document.getElementById("avatar").innerHTML = item;
+
+            } else {
+
+                document.getElementById("outfit").innerHTML = item;
+
+            }
+
+        };
+
+        container.appendChild(button);
+
+    });
+
+}
+
+category("tops");
+
+</script>
+
+</body>
+</html>
